@@ -1,113 +1,20 @@
 import Card from "../components/Elements/Card";
 import MainLayout from "../components/Layouts/MainLayout";
-import bills from "../data/bills";
-import expensesBreakdowns from "../data/expense";
-import transactions from "../data/transaction";
+import CardBill from "../components/Fragments/dashboard/CardBill2";
+import CardExpenseBreakdown from "../components/Fragments/dashboard/CardExpenseBreakdown2";
+import CardTransaction from "../components/Fragments/dashboard/CardTransaction2.jsx";
 
 const DashboardPage = () => {
-  const tabs= ["A11","Revenue","Expense"];
-  const transactionCard = transactions.map((transaction) => (
-    <div key={transaction.id} className="flex justify-between my-6">
-      <div className="flex">
-        <div className="bg-special-bg px-3 rounded-lg flex flex-col place-content-center">
-          {transaction.icon}
-        </div>
-        <div className="ms-4">
-          <span className="text-xl font-bold">
-            {transaction.transactionName}
-          </span>
-          <br />
-          <span className="text-gray-02">{transaction.shopName}</span>
-        </div>
-      </div>
-      <div className="text-right">
-        <span className="text-xl font-bold text-gray-02">
-          ${transaction.amount}
-        </span>
-        <br />
-        <span className="text-gray-02">{transaction.date}</span>
-      </div>
-    </div>
-  ));
-
-  const billCard = bills.map((bill) => (
-    <div key={bill.id} className="lg:flex justify-between pt-3 pb-3">
-      <div className="flex">
-        <div className="bg-special-bg me-3 px-4 rounded-lg flex place-content-center flex-col">
-          <span className="text-xs">{bill.month}</span>
-          <span className="text-2xl font-bold">{bill.date}</span>
-        </div>
-        <div className="">
-          <img className="h-6" src={`/images/${bill.logo}`} />
-          <span className="font-bold">{bill.name}</span>
-          <br />
-          <span className="text-xs">Last Charge - {bill.lastCharge}</span>
-        </div>
-      </div>
-      <div className="flex place-content-center flex-col">
-        <span className="p-2 border rounded-lg font-bold text-center">
-          ${bill.amount}
-        </span>
-      </div>
-    </div>
-  ));
-  const expenseCard = expensesBreakdowns.map((expensesBreakdown) => (
-    <div key={expensesBreakdown.id} className="flex pb-4 justify-between">
-      <div className="flex">
-        <div className="">{expensesBreakdown.icon}</div>
-        <div className="">
-          <span className="">{expensesBreakdown.category}</span>
-          <br />
-          <span className="">${expensesBreakdown.amount}</span>
-          <div className="">
-            <span className="">{expensesBreakdown.percentage}%*</span>{" "}
-            {expensesBreakdown.arrow}
-          </div>
-        </div>
-      </div>
-      <div className="">
-      
-      </div>
-    </div>
-  ));
   return (
     <MainLayout type="dashboard">
       {/* top content start*/}
       <div className="md:grid md:grid-cols-3 md:gap-x-6">
         <Card title="Total Balance" />
-        <Card title="Goals"/>
-        <Card
-          title="Upcoming Bill"
-          desc={
-          <div className="h-full flex flex-col justify-around">
-            {billCard}
-          </div>
-          } />
-        <Card
-          variant="md:col-span-1 md:row-span-2"
-          title="Recent Transaction"
-          desc={
-            <div>
-              <div className="mb-4">
-                {tabs.map((tab)=>(
-                  <button key={tab}
-                   className="px-4 font-bold text-gray-01"
-                   value={tab}>
-                    {tab}
-                  </button>
-                ))}
-              </div>
-              {transactionCard}
-            </div>
-          }/>
+        <Card title="Goals" />
+        <CardBill />
+        <CardTransaction />
         <Card variant="md:col-span-2" title="Statistics" />
-        <Card variant="md:col-span-2" title="Expenses Breakdown" 
-        desc={
-          <div className="h-full md:grid md:grid-cols-3">{expenseCard}</div>
-        }
-        />
-        
-      
+        <CardExpenseBreakdown />
       </div>
       {/* bottom content end*/}
     </MainLayout>
