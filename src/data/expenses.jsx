@@ -1,3 +1,4 @@
+
 export const expensesBreakdowns = [
     {
       id: 1,
@@ -49,11 +50,17 @@ export const expensesBreakdowns = [
     },
   ];
   
-  export const expensesStatistics = [
+  export const expensesStatistics = {
+    dataKey: "date",
+    series: [
+      { dataKey: "amountThisWeek", label: "This Week", color: "#E8E8E8" },
+      { dataKey: "amountLastWeek", label: "Last Week", color: "#299D91" },
+    ],
+    data: [
     {
       id: 1,
       date: "17 Sun",
-      amountThisWeek: 250000,
+      amountThisWeek: 25000,
       amountLastWeek: 50000,
     },
     {
@@ -83,7 +90,7 @@ export const expensesBreakdowns = [
     {
       id: 6,
       date: "22 Fri",
-      amountThisWeek: 250000,
+      amountThisWeek: 25000,
       amountLastWeek: 10000,
     },
     {
@@ -92,6 +99,7 @@ export const expensesBreakdowns = [
       amountThisWeek: 50000,
       amountLastWeek: 10000,
     },
-  ];
+  ]
+};
   
   export default expensesBreakdowns;
